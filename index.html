@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatchan Muhammad Hakim</title>
+
+    <style>
+        body{
+            padding: 0px;
+            margin: 0px;
+            background-color: #FC7300;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position-x: center;
+            background-attachment: fixed;
+            background-origin: content-box;
+            background-position-y: center;
+        }
+        .container-table{
+            background-color: #00425A;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 40px;
+            margin-left: 50px;
+            margin-top: 100px;
+            border-radius: 4px;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+            border: 1px solid floralwhite;
+            height: 163px;
+        }
+        .container-th{
+            font-size: 11pt;
+            font-family: monospace;
+            font-weight: bold;
+            font-style: normal;
+            text-transform: uppercase;
+            padding: 19.1px;
+            color: #BFDB38;
+            text-align: center;
+            padding: 15px;
+        }
+        tr, th, td{
+            border: 1px solid floralwhite;
+            border-radius: 4px;
+        }
+        .container-td{
+            font-size: 10pt;
+            font-family: monospace;
+            font-weight: bold;
+            font-style: normal;
+            text-transform: uppercase;
+            color: #BFDB38;
+            text-align: center;
+            height: 40px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="container-div">
+            <table class="container-table">
+                <thead class="container-thead">
+                    <tr class="container-tr">
+                        <th class="container-th">no</th>
+                        <th class="container-th">nama lengkap</th>
+                        <th class="container-th">jabatan</th>
+                        <th class="container-th">divisi</th>
+                        <th class="container-th">agama</th>
+                        <th class="container-th">gaji pokok</th>
+                        <th class="container-th">tunjangan jabatan</th>
+                        <th class="container-th">asuransi kesehatan</th>
+                        <th class="container-th">gaji kotor</th>
+                        <th class="container-th">zakat profesi</th>
+                        <th class="container-th">home pay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        let no = 1;
+                        let pegawai1 = {'nama' : 'hammam', 'jabatan' : 'manager', 'devisi' : 'hrd', 'agama' : 'islam'};
+                        let pegawai2 = {'nama' : 'theodorus', 'jabatan' : 'asisten manager', 'devisi' : 'keuangan', 'agama' : 'kristen'};
+                        let pegawai3 = {'nama' : 'alfareezel', 'jabatan' : 'supervisor', 'devisi' : 'marketing', 'agama' : 'islam'};
+                        let pegawai4 = {'nama' : 'Bhanuprakash', 'jabatan' : 'staff', 'devisi' : 'koperasi', 'agama' : 'hindu'};
+                        let pegawai5 = {'nama' : 'dhamma palo', 'jabatan' : 'manager', 'devisi' : 'hrd', 'agama' : 'budha'};
+
+                        //Array Of Object
+                        perusahaan = [pegawai1, pegawai2, pegawai3, pegawai4, pegawai5];
+
+                        for(let x of perusahaan){
+                            switch(x.jabatan){
+                                // Gaji Jabatan Karyawan
+                                case 'manager' : gaji = 15000000; break;
+                                case 'asisten manager' : gaji = 10000000; break;
+                                case 'supervisor' : gaji = 7000000; break;
+                                case 'staff' : gaji = 3000000; break;
+                                // Default
+                                default: gaji = 0; break;
+                            }
+                            // Hitungan persen + gaji
+                            let tunjangan_jabatan = 0.30 * gaji;
+                            let asuransi_kesehatan = 0.10 * gaji;
+                            let gaji_kotor = gaji + tunjangan_jabatan + asuransi_kesehatan;
+                            let zaka_profesi = (x.agama == 'islam' && gaji_kotor >= 7000000) ? 0.025 * gaji_kotor : 0;
+                            let home_pay = gaji_kotor - zaka_profesi;
+
+                            color = no % 2 == 0 ? "#5D3891" : "#1F8A70";
+
+                            document.write( 
+                                `<tr bgcolor="${color}">
+                                    <td class="container-td">${no++}</td>
+                                    <td class="container-td">${x.nama}</td>
+                                    <td class="container-td">${x.jabatan}</td>
+                                    <td class="container-td">${x.devisi}</td>
+                                    <td class="container-td">${x.agama}</td>
+                                    <td class="container-td">Rp. ${gaji.toLocaleString()}</br>
+                                    <td class="container-td">Rp. ${tunjangan_jabatan.toLocaleString()}</br>
+                                    <td class="container-td">Rp. ${asuransi_kesehatan.toLocaleString()}</br>
+                                    <td class="container-td">Rp. ${gaji_kotor.toLocaleString()}</br>
+                                    <td class="container-td">Rp. ${zaka_profesi.toLocaleString()}</br>
+                                    <td class="container-td">Rp. ${home_pay.toLocaleString()}</br>
+                                </tr>` )
+                        }
+
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
